@@ -5,6 +5,19 @@ Version=1.65
 # Creation Date: April 2014
 # Last modified: April 18, 2014
 # Brief Description: Binds a machine to AD and migrates the user to a network account
+#***************************************************************************
+# Copyright (C) 2014 Ping Identity Corporation
+# All rights reserved.
+#
+# The contents of this file are subject to the
+# Apache License, Version 2.0, available at:
+# http://www.apache.org
+#
+# THIS SOFTWARE IS PROVIDED “AS IS”, WITHOUT ANY WARRANTIES, EXPRESS,
+# IMPLIED, STATUTORY OR ARISING BY CUSTOM OR TRADE USAGE, INCLUDING,
+# WITHOUT LIMITATION, WARRANTIES OF MERCHANTABILITY, SATISFACTORY QUALITY,
+# TITLE, NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. THE USER
+# ASSUMES ALL RISK ASSOCIATED WITH ACCESS AND USE OF THE SOFTWARE.
 ########################################################################
 # This version taken and adapted from the script below -Scott slapaglia@pingidentity.com
 # MigrateLocalUserToDomainAcct.command
