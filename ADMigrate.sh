@@ -26,7 +26,7 @@ Version=1.65
 
 # This script should not need any modification in most enviornments. 
 # If the script does not execute when run, you may need to 'chmod +x /path/to/thisScript' to make it executable
-# CHECK TO SEE IF A VALUE WAS PASSED IN PARAMETER 4 AND, IF SO, ASSIGN TO “vpn”
+# CHECK TO SEE IF A VALUE WAS PASSED IN PARAMETER 4 AND, IF SO, ASSIGN TO “domainjoinpass” REPEAT FOR PARAMETER 5 and 6
 if [ "$4" != "" ] && [ "$domainjoinpass" == "" ]; then
 	domainjoinpass=$4
 fi
