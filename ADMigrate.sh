@@ -39,12 +39,19 @@ if [ "$6" != "" ] && [ "$OU" == "" ]; then
 	OU=$6
 fi
 
-######## SCRIPT########
-netname=`ls -tr /Users |grep -v pingadmin |grep -v Guest |grep -v Shared |tail -1`
-check4AD=`/usr/bin/dscl localhost -list . | grep "Active Directory"`
-user=`ls -tr /Users |grep -v pingadmin |grep -v Guest |grep -v Shared |tail -1`
+if [ "$7" != "" ] && [ "$domain" == "" ]; then
+	domain=$7
+fi
 
-dsconfigad -add corp.pingidentity.com -ou '$OU' -username $domainjoin -password $domainjoinpass -computer `scutil --get ComputerName` -mobile enable -mobileconfirm disable -localhome enable -useuncpath disable -shell /bin/bash -groups 'Support Level One'
+if [ "$8" != "" ] && [ "$localadmin" == "" ]; then
+	localadmin=$8
+fi
+######## SCRIPT########
+netname=$(ls -tr /Users |grep -v $localadmin |grep -v Guest |grep -v Shared |tail -1)
+check4AD=$(/usr/bin/dscl localhost -list . | grep "Active Directory")
+user=$(ls -tr /Users |grep -v pingadmin |grep -v Guest |grep -v Shared |tail -1)
+
+dsconfigad -add '$domain' -ou '$OU' -username $domainjoin -password $domainjoinpass -computer `scutil --get ComputerName` -mobile enable -mobileconfirm disable -localhome enable -useuncpath disable -shell /bin/bash -groups 'Support Level One'
 
 # If the machine is not bound to AD, then there's no purpose going any further. 
 until [ "${check4AD}" = "Active Directory" ]; do
@@ -53,7 +60,7 @@ until [ "${check4AD}" = "Active Directory" ]; do
 done
 	
 # Determine location of the users home folder
-userHome=`/usr/bin/dscl . read /Users/$user NFSHomeDirectory | cut -c 19-`
+userHome=$(/usr/bin/dscl . read /Users/$user NFSHomeDirectory | cut -c 19-)
 			
 # Get list of groups
 lgroups="$(/usr/bin/id -Gn $user)"
